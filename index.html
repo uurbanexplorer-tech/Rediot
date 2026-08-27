@@ -1,39 +1,441 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>My Reddit</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Reddit Clone</title>
+
+<style>
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #dae0e6;
+    color: #1c1c1c;
+}
+
+/* TOP BAR */
+
+.topbar {
+    height: 56px;
+    background: white;
+    border-bottom: 1px solid #ccc;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+    gap: 20px;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.logo {
+    font-size: 23px;
+    font-weight: bold;
+    color: #ff4500;
+    white-space: nowrap;
+}
+
+.search {
+    flex: 1;
+    max-width: 600px;
+    background: #f6f7f8;
+    border: 1px solid #ddd;
+    border-radius: 25px;
+    padding: 11px 18px;
+    outline: none;
+}
+
+.search:focus {
+    border-color: #0079d3;
+}
+
+.login {
+    background: #ff4500;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 9px 20px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* LAYOUT */
+
+.container {
+    max-width: 1200px;
+    margin: 25px auto;
+    display: grid;
+    grid-template-columns: 1fr 310px;
+    gap: 25px;
+    padding: 0 15px;
+}
+
+/* SORT BAR */
+
+.sortbar {
+    background: white;
+    padding: 12px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+}
+
+.sortbar button {
+    border: none;
+    background: transparent;
+    padding: 8px 14px;
+    border-radius: 20px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.sortbar button:hover {
+    background: #eee;
+}
+
+.sortbar .active {
+    color: #0079d3;
+    background: #eef5ff;
+}
+
+/* POST */
+
+.post {
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    display: flex;
+    overflow: hidden;
+}
+
+.votes {
+    width: 55px;
+    background: #f8f9fa;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 12px;
+    gap: 4px;
+}
+
+.vote {
+    border: none;
+    background: transparent;
+    font-size: 22px;
+    cursor: pointer;
+}
+
+.vote:hover {
+    color: #ff4500;
+}
+
+.score {
+    font-weight: bold;
+}
+
+.post-content {
+    padding: 15px;
+    flex: 1;
+}
+
+.post-info {
+    font-size: 13px;
+    color: #787c7e;
+}
+
+.post-title {
+    font-size: 20px;
+    margin: 8px 0;
+}
+
+.post-text {
+    font-size: 15px;
+    line-height: 1.5;
+}
+
+.post-actions {
+    margin-top: 15px;
+    display: flex;
+    gap: 18px;
+    color: #555;
+    font-weight: bold;
+    font-size: 13px;
+}
+
+.action {
+    cursor: pointer;
+}
+
+.action:hover {
+    color: #0079d3;
+}
+
+/* SIDEBAR */
+
+.sidebar {
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.sidebar-header {
+    background: #0079d3;
+    height: 70px;
+}
+
+.sidebar-content {
+    padding: 18px;
+}
+
+.sidebar h2 {
+    margin-top: 0;
+}
+
+.join {
+    width: 100%;
+    background: #0079d3;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 10px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* MOBILE */
+
+@media (max-width: 800px) {
+
+    .container {
+        grid-template-columns: 1fr;
+    }
+
+    .sidebar {
+        display: none;
+    }
+
+    .logo {
+        font-size: 19px;
+    }
+
+    .search {
+        max-width: none;
+    }
+
+    .login {
+        padding: 8px 12px;
+    }
+}
+
+</style>
 </head>
+
 <body>
 
-    <h1>🔥 My Reddit</h1>
+<header class="topbar">
 
-    <hr>
+    <div class="logo">🟠 MyReddit</div>
 
-    <h2>Home</h2>
+    <input
+        class="search"
+        type="text"
+        placeholder="Search MyReddit"
+    >
 
-    <div>
-        <h3>🚀 My First Post</h3>
-        <p>Welcome to my website!</p>
+    <button class="login">
+        Log In
+    </button>
 
-        <button>⬆️</button>
-        <span>0</span>
-        <button>⬇️</button>
+</header>
 
-        <p>💬 0 Comments</p>
+
+<main class="container">
+
+<section>
+
+    <div class="sortbar">
+
+        <button class="active">🔥 Hot</button>
+        <button>🆕 New</button>
+        <button>⬆️ Top</button>
+
     </div>
 
-    <hr>
 
-    <div>
-        <h3>🎮 Gaming Post</h3>
-        <p>What's everybody playing?</p>
+    <!-- POST 1 -->
 
-        <button>⬆️</button>
-        <span>0</span>
-        <button>⬇️</button>
+    <article class="post">
 
-        <p>💬 0 Comments</p>
+        <div class="votes">
+
+            <button class="vote">▲</button>
+
+            <div class="score">142</div>
+
+            <button class="vote">▼</button>
+
+        </div>
+
+
+        <div class="post-content">
+
+            <div class="post-info">
+                Posted by u/Ryder • 2 hours ago
+            </div>
+
+            <h2 class="post-title">
+                What should I add to my new website? 👀
+            </h2>
+
+            <p class="post-text">
+                I'm building my own community website and I'm trying
+                to make it as realistic as possible. What features
+                should I add?
+            </p>
+
+            <div class="post-actions">
+
+                <span class="action">💬 38 Comments</span>
+                <span class="action">↗ Share</span>
+                <span class="action">🔖 Save</span>
+
+            </div>
+
+        </div>
+
+    </article>
+
+
+    <!-- POST 2 -->
+
+    <article class="post">
+
+        <div class="votes">
+
+            <button class="vote">▲</button>
+
+            <div class="score">87</div>
+
+            <button class="vote">▼</button>
+
+        </div>
+
+
+        <div class="post-content">
+
+            <div class="post-info">
+                Posted by u/Gamer • 5 hours ago
+            </div>
+
+            <h2 class="post-title">
+                What games are y'all playing right now? 🎮
+            </h2>
+
+            <p class="post-text">
+                Looking for something new to play. Drop your
+                recommendations below.
+            </p>
+
+            <div class="post-actions">
+
+                <span class="action">💬 21 Comments</span>
+                <span class="action">↗ Share</span>
+                <span class="action">🔖 Save</span>
+
+            </div>
+
+        </div>
+
+    </article>
+
+
+    <!-- POST 3 -->
+
+    <article class="post">
+
+        <div class="votes">
+
+            <button class="vote">▲</button>
+
+            <div class="score">54</div>
+
+            <button class="vote">▼</button>
+
+        </div>
+
+
+        <div class="post-content">
+
+            <div class="post-info">
+                Posted by u/Explorer • 1 day ago
+            </div>
+
+            <h2 class="post-title">
+                Found this crazy place while exploring 😳
+            </h2>
+
+            <p class="post-text">
+                Anyone else here into exploring abandoned places,
+                trails, or weird locations?
+            </p>
+
+            <div class="post-actions">
+
+                <span class="action">💬 14 Comments</span>
+                <span class="action">↗ Share</span>
+                <span class="action">🔖 Save</span>
+
+            </div>
+
+        </div>
+
+    </article>
+
+</section>
+
+
+<!-- SIDEBAR -->
+
+<aside class="sidebar">
+
+    <div class="sidebar-header"></div>
+
+    <div class="sidebar-content">
+
+        <h2>🏠 Home</h2>
+
+        <p>
+            Welcome to MyReddit! A community built by users,
+            for users.
+        </p>
+
+        <button class="join">
+            Create Post
+        </button>
+
+        <hr>
+
+        <h3>Popular Communities</h3>
+
+        <p>🎮 Gaming</p>
+        <p>🏍️ Vehicles</p>
+        <p>📸 Photography</p>
+        <p>🌎 Exploring</p>
+        <p>💻 Technology</p>
+
     </div>
+
+</aside>
+
+</main>
 
 </body>
 </html>
