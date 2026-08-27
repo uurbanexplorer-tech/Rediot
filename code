@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Reddit</title>
+</head>
+
+<body>
+
+    <h1>🔥 My Reddit</h1>
+
+    <hr>
+
+    <h2>Welcome to My Reddit!</h2>
+
+    <p>This is my own Reddit-style website.</p>
+
+    <button>⬆️ Upvote</button>
+    <button>⬇️ Downvote</button>
+
+    <hr>
+
+    <h3>Test Post</h3>
+    <p>This is my first post! 🚀</p>
+
+</body>
+</html>
